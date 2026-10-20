@@ -79,6 +79,7 @@ jobs:
           git diff --name-only --diff-filter=ACM origin/main...HEAD -- '*.dart' | xargs -r dart format
           mkdir -p build/nothing-validation
           git diff -- '*.dart' > build/nothing-validation/formatted-source.patch
+          python3 -c 'import base64,pathlib; print("NOTHING_FORMAT_PATCH=" + base64.b64encode(pathlib.Path("build/nothing-validation/formatted-source.patch").read_bytes()).decode())'
       - name: Retain formatting changes for source review
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:

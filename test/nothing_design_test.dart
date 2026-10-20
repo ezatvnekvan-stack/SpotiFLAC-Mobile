@@ -74,6 +74,7 @@ void main() {
       ])), brightness));
       await tester.pumpAndSettle();
       await tester.enterText(find.byType(TextField), 'Nothing');
+      await tester.pumpAndSettle();
       expect(changed, 'Nothing');
       await tester.tap(find.byTooltip('Clear'));
       expect(cleared, isTrue);

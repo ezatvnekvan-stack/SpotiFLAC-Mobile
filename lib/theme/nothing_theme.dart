@@ -135,7 +135,7 @@ class NothingTheme extends ThemeExtension<NothingTheme> {
         surfaceTintColor: Colors.transparent,
         dragHandleColor: c.outline,
         dragHandleSize: const Size(36, 4),
-        shape: RoundedRectangleBorder(borderRadius: const BorderRadius.vertical(top: Radius.circular(28)), side: BorderSide(color: c.outlineVariant)),
+        shape: tokens.sheetShape,
       ),
       navigationBarTheme: base.navigationBarTheme.copyWith(
         height: 76,
