@@ -143,7 +143,7 @@ class _LibrarySourceSettingsItem extends StatelessWidget {
               )
             : null,
         subtitle: [
-          if (pathLine != null) pathLine,
+          ?pathLine,
           details,
           if (!isScanning && source.lastScanError?.trim().isNotEmpty == true)
             context.friendlyError(source.lastScanError!),
@@ -648,3 +648,4 @@ class _AutoScanOption extends StatelessWidget {
     );
   }
 }
+

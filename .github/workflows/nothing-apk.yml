@@ -1,8 +1,7 @@
 name: Nothing edition APK
 
 on:
-  push:
-    branches: [codex/nothing-redesign]
+  workflow_dispatch:
   pull_request:
     branches: [main]
     paths:
@@ -78,6 +77,14 @@ jobs:
         run: |
           flutter pub get
           git diff --name-only --diff-filter=ACM origin/main...HEAD -- '*.dart' | xargs -r dart format
+          mkdir -p build/nothing-validation
+          git diff -- '*.dart' > build/nothing-validation/formatted-source.patch
+      - name: Retain formatting changes for source review
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: Nothing-formatted-source
+          path: build/nothing-validation/formatted-source.patch
+          retention-days: 7
       - name: Analyze app
         run: flutter analyze
       - name: Run design and persistence regression checks
