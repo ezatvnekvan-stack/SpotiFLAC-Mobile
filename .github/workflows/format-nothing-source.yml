@@ -1,0 +1,26 @@
+name: Format Nothing source
+on:
+  push:
+    branches: [codex/nothing-format-source]
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          cache: true
+      - name: Format only the changed Dart source
+        run: |
+          git diff --name-only --diff-filter=ACM origin/main...HEAD -- '*.dart' | xargs -r dart format
+          git add lib test/nothing_design_test.dart
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Format Nothing edition Dart sources'
+            git push origin HEAD:codex/nothing-format-source
+          fi
