@@ -44,9 +44,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                         spacing: 8,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Text(
-                            style.displayName,
-                          ),
+                          Text(style.displayName),
                           if (style == AppThemeStyle.mornye)
                             Container(
                               padding: const EdgeInsets.symmetric(
@@ -54,9 +52,8 @@ class AppearanceSettingsPage extends ConsumerWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.primary.withValues(alpha: 0.12),
+                                color: Theme.of(context).colorScheme.primary
+                                    .withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
@@ -270,4 +267,3 @@ class AppearanceSettingsPage extends ConsumerWidget {
     );
   }
 }
-

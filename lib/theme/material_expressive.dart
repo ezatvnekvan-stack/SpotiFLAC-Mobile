@@ -7,7 +7,9 @@ import 'package:spotiflac_android/theme/mornye_theme.dart';
 /// Motion-heavy expressive controls use their static Material counterpart when
 /// the OS requests reduced motion. Mornye owns its own component system.
 bool materialExpressiveEnabled(BuildContext context) =>
-    !context.isMornye && !context.isNothing && !MediaQuery.disableAnimationsOf(context);
+    !context.isMornye &&
+    !context.isNothing &&
+    !MediaQuery.disableAnimationsOf(context);
 
 /// Bridges the app's Flutter theme to the separate Material UI widget library.
 /// Local artwork colors, dynamic colors, fonts and AMOLED surfaces stay intact.
@@ -131,4 +133,3 @@ class MaterialExpressiveScope extends StatelessWidget {
     );
   }
 }
-

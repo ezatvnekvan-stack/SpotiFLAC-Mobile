@@ -100,4 +100,3 @@ class AppIcon extends StatelessWidget {
     );
   }
 }
-

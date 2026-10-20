@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:spotiflac_android/widgets/nothing_chrome.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -458,9 +459,8 @@ class _SetupScreenState extends ConsumerState<SetupScreen>
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
               child: Text(
                 context.l10n.setupDownloadLocationIosMessage,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium
+                    ?.copyWith(color: colorScheme.onSurfaceVariant),
               ),
             ),
             ListTile(
@@ -707,9 +707,8 @@ class _SetupScreenState extends ConsumerState<SetupScreen>
                   if (_currentStep > 0)
                     AppIconButton.filledTonal(
                       onPressed: _prevPage,
-                      tooltip: MaterialLocalizations.of(
-                        context,
-                      ).backButtonTooltip,
+                      tooltip: MaterialLocalizations.of(context)
+                          .backButtonTooltip,
                       icon: const Icon(Icons.arrow_back),
                       style: IconButton.styleFrom(
                         backgroundColor: colorScheme.surfaceContainerHighest,
@@ -809,4 +808,3 @@ class _SetupScreenState extends ConsumerState<SetupScreen>
     );
   }
 }
-

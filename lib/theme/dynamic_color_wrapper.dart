@@ -22,10 +22,17 @@ class DynamicColorWrapper extends ConsumerWidget {
 
     if (themeSettings.style == AppThemeStyle.nothing) {
       return builder(
-        NothingTheme.build(Brightness.light,
-          useSystemFont: themeSettings.useSystemFont, fontFamily: fontFamily),
-        NothingTheme.build(Brightness.dark, amoled: themeSettings.useAmoled,
-          useSystemFont: themeSettings.useSystemFont, fontFamily: fontFamily),
+        NothingTheme.build(
+          Brightness.light,
+          useSystemFont: themeSettings.useSystemFont,
+          fontFamily: fontFamily,
+        ),
+        NothingTheme.build(
+          Brightness.dark,
+          amoled: themeSettings.useAmoled,
+          useSystemFont: themeSettings.useSystemFont,
+          fontFamily: fontFamily,
+        ),
         themeSettings.themeMode,
       );
     }
@@ -150,4 +157,3 @@ class DynamicColorWrapper extends ConsumerWidget {
     );
   }
 }
-

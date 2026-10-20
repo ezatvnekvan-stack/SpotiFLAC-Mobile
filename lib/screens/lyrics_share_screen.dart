@@ -863,4 +863,3 @@ class LyricsShareCard extends StatelessWidget {
     }
   }
 }
-

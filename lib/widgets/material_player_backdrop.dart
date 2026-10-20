@@ -29,8 +29,10 @@ class MaterialPlayerBackdrop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (context.isNothing && !showArtwork) {
-      return ColoredBox(color: colorScheme.surface,
-        child: const NothingDotGrid(opacity: 0.08, child: SizedBox.expand()));
+      return ColoredBox(
+        color: colorScheme.surface,
+        child: const NothingDotGrid(opacity: 0.08, child: SizedBox.expand()),
+      );
     }
     final size = MediaQuery.sizeOf(context);
     final artUri = mediaItem.artUri?.toString();
@@ -114,4 +116,3 @@ class MaterialPlayerBackdrop extends StatelessWidget {
     );
   }
 }
-

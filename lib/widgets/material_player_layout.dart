@@ -71,11 +71,21 @@ class MaterialPlayerLayout extends StatelessWidget {
                           ),
                         );
                         return AnimatedScale(
-                          scale: context.isNothing ? 1 : resting ? 0.9 : 1,
+                          scale: context.isNothing
+                              ? 1
+                              : resting
+                              ? 0.9
+                              : 1,
                           duration: motion.duration,
                           curve: motion.curve,
                           child: TweenAnimationBuilder<double>(
-                            tween: Tween(end: context.isNothing ? 16.0 : resting ? 40.0 : 20.0),
+                            tween: Tween(
+                              end: context.isNothing
+                                  ? 16.0
+                                  : resting
+                                  ? 40.0
+                                  : 20.0,
+                            ),
                             duration: motion.duration,
                             curve: motion.curve,
                             builder: (context, radius, artwork) => ClipRRect(
@@ -300,4 +310,3 @@ class MaterialPlayerLayout extends StatelessWidget {
     ];
   }
 }
-

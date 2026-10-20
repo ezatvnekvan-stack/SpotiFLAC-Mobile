@@ -88,7 +88,9 @@ class AppSearchField extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: radius,
-            borderSide: context.isNothing ? BorderSide(color: colorScheme.outlineVariant) : BorderSide.none,
+            borderSide: context.isNothing
+                ? BorderSide(color: colorScheme.outlineVariant)
+                : BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: radius,
@@ -99,7 +101,8 @@ class AppSearchField extends StatelessWidget {
           filled: true,
           fillColor: mornye
               ? Colors.transparent
-              : context.isNothing ? colorScheme.surfaceContainerLow
+              : context.isNothing
+              ? colorScheme.surfaceContainerLow
               : colorScheme.surfaceContainerHigh,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -123,4 +126,3 @@ class AppSearchField extends StatelessWidget {
     );
   }
 }
-

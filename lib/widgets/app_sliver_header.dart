@@ -83,17 +83,15 @@ class AppSliverHeader extends StatelessWidget {
                   leading ??
                   (context.isMornye
                       ? AppIconButton(
-                          tooltip: MaterialLocalizations.of(
-                            context,
-                          ).backButtonTooltip,
+                          tooltip: MaterialLocalizations.of(context)
+                              .backButtonTooltip,
                           icon: const AppIcon(Icons.chevron_left),
                           onPressed: () => Navigator.pop(context),
                         )
                       // Expressive app bars hold navigation in a tonal circle.
                       : AppIconButton.filledTonal(
-                          tooltip: MaterialLocalizations.of(
-                            context,
-                          ).backButtonTooltip,
+                          tooltip: MaterialLocalizations.of(context)
+                              .backButtonTooltip,
                           icon: const AppIcon(Icons.arrow_back),
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
@@ -159,21 +157,42 @@ class AppSliverHeader extends StatelessWidget {
                   fontFamily: context.isNothing ? NothingTheme.dotFont : null,
                   fontFamilyFallback: const ['Inter', 'sans-serif'],
                   fontSize: fontSize,
-                  fontWeight: context.isNothing ? FontWeight.w400 : FontWeight.bold,
-                  letterSpacing: context.isNothing ? 0.8 : context.isMornye ? -0.7 * expandRatio : null,
+                  fontWeight: context.isNothing
+                      ? FontWeight.w400
+                      : FontWeight.bold,
+                  letterSpacing: context.isNothing
+                      ? 0.8
+                      : context.isMornye
+                      ? -0.7 * expandRatio
+                      : null,
                   color: colorScheme.onSurface,
                 ),
               ),
             ),
           );
           if (context.isNothing) {
-            return Stack(fit: StackFit.expand, children: [
-              ColoredBox(color: colorScheme.surface),
-              PositionedDirectional(top: MediaQuery.paddingOf(context).top + 12, end: 24, width: 60, height: 36,
-                child: IgnorePointer(child: Opacity(opacity: expandRatio,
-                  child: const NothingDotGrid(opacity: 0.24, child: SizedBox.expand())))),
-              bar,
-            ]);
+            return Stack(
+              fit: StackFit.expand,
+              children: [
+                ColoredBox(color: colorScheme.surface),
+                PositionedDirectional(
+                  top: MediaQuery.paddingOf(context).top + 12,
+                  end: 24,
+                  width: 60,
+                  height: 36,
+                  child: IgnorePointer(
+                    child: Opacity(
+                      opacity: expandRatio,
+                      child: const NothingDotGrid(
+                        opacity: 0.24,
+                        child: SizedBox.expand(),
+                      ),
+                    ),
+                  ),
+                ),
+                bar,
+              ],
+            );
           }
           if (context.isMornye) return bar;
           // Collapsed expressive bars sit on a container tone, like a
@@ -191,4 +210,3 @@ class AppSliverHeader extends StatelessWidget {
     );
   }
 }
-

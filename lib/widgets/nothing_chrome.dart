@@ -3,8 +3,15 @@ import 'package:spotiflac_android/theme/nothing_theme.dart';
 
 /// Keeps the existing app identity while drawing this edition's disc mark.
 class NothingBrandImage extends StatelessWidget {
-  const NothingBrandImage(this.asset, {super.key, this.width, this.height,
-    this.color, this.fit, this.errorBuilder});
+  const NothingBrandImage(
+    this.asset, {
+    super.key,
+    this.width,
+    this.height,
+    this.color,
+    this.fit,
+    this.errorBuilder,
+  });
   final String asset;
   final double? width;
   final double? height;
@@ -15,13 +22,27 @@ class NothingBrandImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!context.isNothing) {
-      return Image.asset(asset, width: width, height: height, color: color,
-        fit: fit, errorBuilder: errorBuilder);
+      return Image.asset(
+        asset,
+        width: width,
+        height: height,
+        color: color,
+        fit: fit,
+        errorBuilder: errorBuilder,
+      );
     }
     final c = Theme.of(context).colorScheme;
-    return Semantics(label: 'SpotiFLAC', image: true,
-      child: SizedBox(width: width, height: height,
-        child: CustomPaint(painter: _DiscPainter(color ?? c.onSurface, c.primary))));
+    return Semantics(
+      label: 'SpotiFLAC',
+      image: true,
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: CustomPaint(
+          painter: _DiscPainter(color ?? c.onSurface, c.primary),
+        ),
+      ),
+    );
   }
 }
 
@@ -33,22 +54,43 @@ class _DiscPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final side = size.shortestSide;
     final center = size.center(Offset.zero);
-    final paint = Paint()..color = ink..style = PaintingStyle.stroke..strokeWidth = side * 0.035;
+    final paint = Paint()
+      ..color = ink
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = side * 0.035;
     canvas.drawCircle(center, side * 0.38, paint);
     canvas.drawCircle(center, side * 0.32, paint..strokeWidth = side * 0.012);
     paint.style = PaintingStyle.fill;
-    const pattern = ['01111', '10000', '10000', '01110', '00001', '00001', '11110'];
+    const pattern = [
+      '01111',
+      '10000',
+      '10000',
+      '01110',
+      '00001',
+      '00001',
+      '11110',
+    ];
     for (var row = 0; row < 7; row++) {
       for (var col = 0; col < 5; col++) {
         if (pattern[row][col] == '1') {
-          canvas.drawCircle(center + Offset((col - 2) * side * 0.055, (row - 3) * side * 0.055), side * 0.018, paint);
+          canvas.drawCircle(
+            center + Offset((col - 2) * side * 0.055, (row - 3) * side * 0.055),
+            side * 0.018,
+            paint,
+          );
         }
       }
     }
-    canvas.drawCircle(center + Offset(side * 0.29, -side * 0.29), side * 0.055, paint..color = accent);
+    canvas.drawCircle(
+      center + Offset(side * 0.29, -side * 0.29),
+      side * 0.055,
+      paint..color = accent,
+    );
   }
+
   @override
-  bool shouldRepaint(_DiscPainter oldDelegate) => oldDelegate.ink != ink || oldDelegate.accent != accent;
+  bool shouldRepaint(_DiscPainter oldDelegate) =>
+      oldDelegate.ink != ink || oldDelegate.accent != accent;
 }
 
 /// A static dot grid: never runs a ticker while the app is idle.
@@ -59,7 +101,9 @@ class NothingDotGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomPaint(
-    painter: _DotPainter(Theme.of(context).colorScheme.onSurface.withValues(alpha: opacity)),
+    painter: _DotPainter(
+      Theme.of(context).colorScheme.onSurface.withValues(alpha: opacity),
+    ),
     child: child,
   );
 }

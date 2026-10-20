@@ -653,9 +653,8 @@ class ArtistScreenSkeleton extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onSurface.withValues(alpha: 0.10),
+                    color: Theme.of(context).colorScheme.onSurface
+                        .withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: const Row(
@@ -1179,7 +1178,11 @@ class _DownloadSuccessOverlayState extends State<DownloadSuccessOverlay>
       builder: (context, child) {
         return Container(
           decoration: BoxDecoration(
-            color: (context.isNothing ? Theme.of(context).colorScheme.onSurface : Colors.green).withValues(alpha: _flashAnimation.value),
+            color:
+                (context.isNothing
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.green)
+                    .withValues(alpha: _flashAnimation.value),
             borderRadius: BorderRadius.circular(12),
           ),
           child: child,
@@ -1241,4 +1244,3 @@ class _AnimatedBadgeState extends State<AnimatedBadge>
     return ScaleTransition(scale: _scaleAnimation, child: widget.child);
   }
 }
-

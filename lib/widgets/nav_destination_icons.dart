@@ -134,4 +134,3 @@ class _SpinIconState extends State<SpinIcon>
     return RotationTransition(turns: _rotationAnimation, child: widget.child);
   }
 }
-
