@@ -1,3 +1,4 @@
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -18,6 +19,16 @@ class DynamicColorWrapper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeSettings = ref.watch(themeProvider);
     final fontFamily = ref.watch(customFontFamilyProvider).asData?.value;
+
+    if (themeSettings.style == AppThemeStyle.nothing) {
+      return builder(
+        NothingTheme.build(Brightness.light,
+          useSystemFont: themeSettings.useSystemFont, fontFamily: fontFamily),
+        NothingTheme.build(Brightness.dark, amoled: themeSettings.useAmoled,
+          useSystemFont: themeSettings.useSystemFont, fontFamily: fontFamily),
+        themeSettings.themeMode,
+      );
+    }
 
     if (themeSettings.style == AppThemeStyle.mornye) {
       return builder(
@@ -139,3 +150,4 @@ class DynamicColorWrapper extends ConsumerWidget {
     );
   }
 }
+

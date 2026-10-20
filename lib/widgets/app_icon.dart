@@ -1,3 +1,4 @@
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/theme/material_symbols.dart';
 import 'package:spotiflac_android/theme/mornye_icons.dart';
@@ -89,7 +90,8 @@ class AppIcon extends StatelessWidget {
       symbol.icon,
       size: size,
       color: color,
-      fill: fill ?? (symbol.filled ? 1 : 0),
+      fill: context.isNothing ? (fill ?? 0) : fill ?? (symbol.filled ? 1 : 0),
+      weight: context.isNothing ? 300 : null,
       // Material Symbols adjust stroke detail for the drawn size.
       opticalSize: resolvedSize.clamp(20, 48).toDouble(),
       semanticLabel: semanticLabel,
@@ -98,3 +100,4 @@ class AppIcon extends StatelessWidget {
     );
   }
 }
+

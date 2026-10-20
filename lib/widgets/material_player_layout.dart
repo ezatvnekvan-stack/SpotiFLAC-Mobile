@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,11 +71,11 @@ class MaterialPlayerLayout extends StatelessWidget {
                           ),
                         );
                         return AnimatedScale(
-                          scale: resting ? 0.9 : 1,
+                          scale: context.isNothing ? 1 : resting ? 0.9 : 1,
                           duration: motion.duration,
                           curve: motion.curve,
                           child: TweenAnimationBuilder<double>(
-                            tween: Tween(end: resting ? 40 : 20),
+                            tween: Tween(end: context.isNothing ? 16.0 : resting ? 40.0 : 20.0),
                             duration: motion.duration,
                             curve: motion.curve,
                             builder: (context, radius, artwork) => ClipRRect(
@@ -299,3 +300,4 @@ class MaterialPlayerLayout extends StatelessWidget {
     ];
   }
 }
+

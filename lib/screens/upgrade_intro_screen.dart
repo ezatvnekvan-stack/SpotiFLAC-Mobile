@@ -1,6 +1,8 @@
 import 'dart:io' show Platform;
 import 'dart:math' as math;
 
+import 'package:spotiflac_android/widgets/nothing_chrome.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
@@ -516,7 +518,7 @@ class _TourHeroState extends State<_TourHero> with TickerProviderStateMixin {
                 ),
                 child: const SizedBox.square(dimension: 92),
               ),
-              Image.asset(
+              NothingBrandImage(
                 'assets/images/logo-transparent.png',
                 width: 96,
                 height: 96,
@@ -786,7 +788,9 @@ class _ThemePicker extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: Theme(
-              data: style == AppThemeStyle.mornye
+              data: style == AppThemeStyle.nothing
+                  ? NothingTheme.build(brightness, amoled: settings.useAmoled, useSystemFont: settings.useSystemFont)
+                  : style == AppThemeStyle.mornye
                   ? MornyeTheme.build(
                       brightness,
                       accent: settings.mornyeAccent,
@@ -807,8 +811,10 @@ class _ThemePicker extends ConsumerWidget {
               child: _ThemeOption(
                 style: style,
                 selected: settings.style == style,
-                label: style == AppThemeStyle.mornye ? 'Mornye' : 'Material',
-                description: style == AppThemeStyle.mornye
+                label: style.displayName,
+                description: style == AppThemeStyle.nothing
+                    ? 'Monochrome. Dot matrix. Your music.'
+                    : style == AppThemeStyle.mornye
                     ? l10n.upgradeIntroThemeMornyeBody
                     : l10n.whatsNewThemeMaterialBody,
                 onTap: () => ref.read(themeProvider.notifier).setStyle(style),
@@ -968,3 +974,4 @@ class _ThemeOption extends StatelessWidget {
     );
   }
 }
+

@@ -18,6 +18,9 @@ class _RewindPalette {
       );
     }
     final c = Theme.of(context).colorScheme;
+    if (context.isNothing) {
+      return _RewindPalette(c.surface, c.onSurface, c.primary);
+    }
     final pairs = [
       (c.primaryContainer, c.onPrimaryContainer, c.primary),
       (c.tertiaryContainer, c.onTertiaryContainer, c.tertiary),
@@ -627,3 +630,4 @@ class _RewindBackdropState extends State<_RewindBackdrop>
     );
   }
 }
+

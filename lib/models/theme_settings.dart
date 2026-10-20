@@ -22,7 +22,15 @@ double normalizeMornyeGlassClarity(num? value) =>
     ? value.toDouble().clamp(0.0, 1.0)
     : kDefaultMornyeGlassClarity;
 
-enum AppThemeStyle { material, mornye }
+enum AppThemeStyle { nothing, material, mornye }
+
+extension AppThemeStyleLabel on AppThemeStyle {
+  String get displayName => switch (this) {
+    AppThemeStyle.nothing => 'Nothing',
+    AppThemeStyle.material => 'Material',
+    AppThemeStyle.mornye => 'Mornye',
+  };
+}
 
 enum MornyeAccent { red, orange, green, teal, blue, purple, pink }
 
@@ -35,7 +43,7 @@ MornyeAccent mornyeAccentFromString(String? value) =>
 AppThemeStyle themeStyleFromString(String? value) =>
     AppThemeStyle.values.firstWhere(
       (style) => style.name == value,
-      orElse: () => AppThemeStyle.material,
+      orElse: () => AppThemeStyle.nothing,
     );
 
 /// Default Spotify green color for fallback
@@ -59,8 +67,8 @@ class ThemeSettings {
     this.themeMode = ThemeMode.system,
     this.useDynamicColor = true,
     this.seedColorValue = kDefaultSeedColor,
-    this.useAmoled = false,
-    this.style = AppThemeStyle.material,
+    this.useAmoled = true,
+    this.style = AppThemeStyle.nothing,
     this.mornyeAccent = MornyeAccent.red,
     this.useSystemFont = false,
     this.customFontId = '',
@@ -126,7 +134,7 @@ class ThemeSettings {
       themeMode: themeModeFromString(json[kThemeModeKey] as String?),
       useDynamicColor: json[kUseDynamicColorKey] as bool? ?? true,
       seedColorValue: json[kSeedColorKey] as int? ?? kDefaultSeedColor,
-      useAmoled: json[kUseAmoledKey] as bool? ?? false,
+      useAmoled: json[kUseAmoledKey] as bool? ?? true,
       style: themeStyleFromString(json[kThemeStyleKey] as String?),
       mornyeAccent: mornyeAccentFromString(json[kMornyeAccentKey] as String?),
       useSystemFont: json[kUseSystemFontKey] as bool? ?? false,
@@ -183,3 +191,4 @@ ThemeMode themeModeFromString(String? value) {
     orElse: () => ThemeMode.system,
   );
 }
+

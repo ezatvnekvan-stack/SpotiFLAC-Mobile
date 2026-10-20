@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:spotiflac_android/widgets/nothing_chrome.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/routes/now_playing_route.dart';
@@ -26,6 +28,10 @@ class MaterialPlayerBackdrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (context.isNothing && !showArtwork) {
+      return ColoredBox(color: colorScheme.surface,
+        child: const NothingDotGrid(opacity: 0.08, child: SizedBox.expand()));
+    }
     final size = MediaQuery.sizeOf(context);
     final artUri = mediaItem.artUri?.toString();
     final appBarHeight = MediaQuery.paddingOf(context).top + kToolbarHeight;
@@ -108,3 +114,4 @@ class MaterialPlayerBackdrop extends StatelessWidget {
     );
   }
 }
+

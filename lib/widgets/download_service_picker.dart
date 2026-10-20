@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spotiflac_android/providers/extension_provider.dart';
 import 'package:spotiflac_android/theme/app_motion.dart';
@@ -588,7 +589,10 @@ class _ServiceHealthDot extends ConsumerWidget {
           ),
         ) ??
         'unknown';
-    final color = _serviceHealthColor(status);
+    final c = Theme.of(context).colorScheme;
+    final color = context.isNothing
+        ? status == 'online' ? c.onSurface : status == 'offline' ? c.primary : c.outline
+        : _serviceHealthColor(status);
     return Tooltip(
       message: _serviceHealthTooltip(context, status),
       child: Container(
@@ -851,3 +855,4 @@ class _TrackInfoHeaderState extends State<_TrackInfoHeader> {
     }
   }
 }
+

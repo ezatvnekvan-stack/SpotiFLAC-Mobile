@@ -1,3 +1,5 @@
+import 'package:spotiflac_android/widgets/nothing_chrome.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/theme/app_tokens.dart';
 import 'package:spotiflac_android/theme/mornye_theme.dart';
@@ -154,14 +156,25 @@ class AppSliverHeader extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
+                  fontFamily: context.isNothing ? NothingTheme.dotFont : null,
+                  fontFamilyFallback: const ['Inter', 'sans-serif'],
                   fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: context.isMornye ? -0.7 * expandRatio : null,
+                  fontWeight: context.isNothing ? FontWeight.w400 : FontWeight.bold,
+                  letterSpacing: context.isNothing ? 0.8 : context.isMornye ? -0.7 * expandRatio : null,
                   color: colorScheme.onSurface,
                 ),
               ),
             ),
           );
+          if (context.isNothing) {
+            return Stack(fit: StackFit.expand, children: [
+              ColoredBox(color: colorScheme.surface),
+              PositionedDirectional(top: MediaQuery.paddingOf(context).top + 12, end: 24, width: 60, height: 36,
+                child: IgnorePointer(child: Opacity(opacity: expandRatio,
+                  child: const NothingDotGrid(opacity: 0.24, child: SizedBox.expand())))),
+              bar,
+            ]);
+          }
           if (context.isMornye) return bar;
           // Collapsed expressive bars sit on a container tone, like a
           // scrolled-under app bar, and fade back to the surface on expand.
@@ -178,3 +191,4 @@ class AppSliverHeader extends StatelessWidget {
     );
   }
 }
+

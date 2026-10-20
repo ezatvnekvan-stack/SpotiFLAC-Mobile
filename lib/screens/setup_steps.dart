@@ -50,7 +50,7 @@ extension _SetupScreenSteps on _SetupScreenState {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
+                  NothingBrandImage(
                     'assets/images/logo-transparent.png',
                     width: logoSize,
                     height: logoSize,
@@ -496,3 +496,4 @@ class _SuccessCard extends StatelessWidget {
     );
   }
 }
+

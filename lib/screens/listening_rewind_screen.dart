@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart' show CustomSemanticsAction;
 import 'package:flutter/services.dart';
@@ -412,3 +413,4 @@ class _CloseButton extends StatelessWidget {
     onPressed: () => Navigator.of(context).maybePop(),
   );
 }
+

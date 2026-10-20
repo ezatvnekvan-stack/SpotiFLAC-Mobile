@@ -45,9 +45,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Text(
-                            style == AppThemeStyle.mornye
-                                ? 'Mornye'
-                                : 'Material',
+                            style.displayName,
                           ),
                           if (style == AppThemeStyle.mornye)
                             Container(
@@ -131,7 +129,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                   ],
                 ),
               ),
-            ] else ...[
+            ] else if (themeSettings.style == AppThemeStyle.material) ...[
               SliverToBoxAdapter(
                 child: SettingsSectionHeader(title: context.l10n.sectionColor),
               ),
@@ -177,7 +175,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                     onChanged: (mode) =>
                         ref.read(themeProvider.notifier).setThemeMode(mode),
                   ),
-                  if (themeSettings.style == AppThemeStyle.material &&
+                  if (themeSettings.style != AppThemeStyle.mornye &&
                       Theme.of(context).brightness == Brightness.dark)
                     SettingsSwitchItem(
                       icon: Icons.brightness_2,
@@ -272,3 +270,4 @@ class AppearanceSettingsPage extends ConsumerWidget {
     );
   }
 }
+

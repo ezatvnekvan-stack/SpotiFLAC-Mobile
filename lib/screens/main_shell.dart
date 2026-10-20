@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' show ImageFilter;
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/widgets/app_alert_dialog.dart';
@@ -869,7 +870,7 @@ class _MainShellState extends ConsumerState<MainShell>
               // The backdrop blur re-filters everything scrolling underneath on
               // every frame; low-end devices get an opaque base instead unless
               // the user forces blur on in appearance settings.
-              if (!ref.watch(backdropBlurEnabledProvider)) {
+              if (context.isNothing || !ref.watch(backdropBlurEnabledProvider)) {
                 return ColoredBox(
                   color: settingsGroupColor(context),
                   child: bottomBar,
@@ -992,3 +993,4 @@ class _KeepAliveTabPageState extends State<_KeepAliveTabPage>
     return widget.child;
   }
 }
+

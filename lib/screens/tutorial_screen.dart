@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotiflac_android/providers/settings_provider.dart';
@@ -613,13 +614,13 @@ class _InteractiveDownloadExampleState
                     duration: const Duration(milliseconds: 300),
                     padding: EdgeInsets.all(buttonPadding),
                     decoration: BoxDecoration(
-                      color: _isCompleted ? Colors.green : colorScheme.primary,
+                      color: context.isNothing ? colorScheme.primary : _isCompleted ? Colors.green : colorScheme.primary,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
                           color:
                               (_isCompleted
-                                      ? Colors.green
+                                      ? context.isNothing ? colorScheme.primary : Colors.green
                                       : colorScheme.primary)
                                   .withValues(alpha: 0.3),
                           blurRadius: 12,
@@ -771,3 +772,4 @@ class _TutorialPage extends StatelessWidget {
     );
   }
 }
+

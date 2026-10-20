@@ -1,5 +1,6 @@
 import 'dart:ui' show ImageFilter;
 
+import 'package:spotiflac_android/widgets/nothing_chrome.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:material_3_expressive/material_3_expressive.dart'
@@ -769,7 +770,7 @@ class LyricsShareCard extends StatelessWidget {
                         children: [
                           // The asset is already a disc with the glyph cut
                           // out, so it only needs the card's text color.
-                          Image.asset(
+                          NothingBrandImage(
                             'assets/images/logo-transparent.png',
                             width: 26,
                             height: 26,
@@ -862,3 +863,4 @@ class LyricsShareCard extends StatelessWidget {
     }
   }
 }
+

@@ -1,3 +1,4 @@
+import 'package:spotiflac_android/widgets/nothing_chrome.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -332,13 +333,13 @@ class _AppHeaderCard extends StatelessWidget {
                   color: colorScheme.primary,
                   shape: BoxShape.circle,
                 ),
-                child: Image.asset(
+                child: NothingBrandImage(
                   'assets/images/logo-transparent.png',
                   color: colorScheme.onPrimary,
                   fit: BoxFit.contain,
                   errorBuilder: (_, _, _) => ClipRRect(
                     borderRadius: BorderRadius.circular(24),
-                    child: Image.asset(
+                    child: NothingBrandImage(
                       'assets/images/logo.png',
                       width: logoSize,
                       height: logoSize,
@@ -762,3 +763,4 @@ class _AboutSettingsItem extends StatelessWidget {
     return SettingsSearchTarget(label: title, child: content);
   }
 }
+

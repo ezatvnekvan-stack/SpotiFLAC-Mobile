@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:spotiflac_android/theme/app_motion.dart';
 import 'package:spotiflac_android/theme/app_tokens.dart';
 import 'package:spotiflac_android/theme/material_expressive.dart';
@@ -1178,7 +1179,7 @@ class _DownloadSuccessOverlayState extends State<DownloadSuccessOverlay>
       builder: (context, child) {
         return Container(
           decoration: BoxDecoration(
-            color: Colors.green.withValues(alpha: _flashAnimation.value),
+            color: (context.isNothing ? Theme.of(context).colorScheme.onSurface : Colors.green).withValues(alpha: _flashAnimation.value),
             borderRadius: BorderRadius.circular(12),
           ),
           child: child,
@@ -1240,3 +1241,4 @@ class _AnimatedBadgeState extends State<AnimatedBadge>
     return ScaleTransition(scale: _scaleAnimation, child: widget.child);
   }
 }
+

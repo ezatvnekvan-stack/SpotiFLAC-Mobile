@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:spotiflac_android/widgets/app_alert_dialog.dart';
 import 'package:spotiflac_android/widgets/app_bottom_sheet.dart';
 import 'package:spotiflac_android/widgets/app_content_card.dart';
@@ -262,7 +263,7 @@ class _LogScreenState extends State<LogScreen> {
       case 'FATAL':
         return colorScheme.error;
       case 'WARN':
-        return Colors.orange;
+        return context.isNothing ? colorScheme.onSurface : Colors.orange;
       case 'INFO':
         return colorScheme.primary;
       case 'DEBUG':
@@ -542,3 +543,4 @@ class _LogScreenState extends State<LogScreen> {
     );
   }
 }
+
