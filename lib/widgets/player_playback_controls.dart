@@ -53,9 +53,8 @@ class PlayerPlaybackControls extends ConsumerWidget {
     final playPauseSize = compact
         ? (isPlaying ? 44.0 : 40.0)
         : (isPlaying ? 60.0 : 54.0);
-    final timeStyle = Theme.of(
-      context,
-    ).textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant);
+    final timeStyle = Theme.of(context).textTheme.bodySmall
+        ?.copyWith(color: colorScheme.onSurfaceVariant);
     return Column(
       children: [
         ValueListenableBuilder<Duration?>(
@@ -231,9 +230,7 @@ class PlayerPlaybackControls extends ConsumerWidget {
                         ? context.l10n.actionPause
                         : context.l10n.tooltipPlay,
                     icon: isLoading
-                        ? AppLoadingIndicator(
-                            color: colorScheme.onPrimary,
-                          )
+                        ? AppLoadingIndicator(color: colorScheme.onPrimary)
                         : Icon(isPlaying ? Icons.pause : Icons.play_arrow),
                     onPressed: isLoading
                         ? null
@@ -419,4 +416,3 @@ class _QualityBadge extends StatelessWidget {
     );
   }
 }
-

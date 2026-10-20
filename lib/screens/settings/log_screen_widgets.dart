@@ -91,7 +91,11 @@ class _LogEntryTile extends StatelessWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: (context.isNothing ? colorScheme.onSurface : Colors.teal).withValues(alpha: 0.15),
+                            color:
+                                (context.isNothing
+                                        ? colorScheme.onSurface
+                                        : Colors.teal)
+                                    .withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -99,7 +103,9 @@ class _LogEntryTile extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 9,
                               fontWeight: FontWeight.bold,
-                              color: context.isNothing ? colorScheme.onSurface : Colors.teal,
+                              color: context.isNothing
+                                  ? colorScheme.onSurface
+                                  : Colors.teal,
                             ),
                           ),
                         ),
@@ -239,7 +245,9 @@ class _LogSummaryCard extends StatelessWidget {
                   label: context.l10n.logIssueRateLimitedLabel,
                   description: context.l10n.logIssueRateLimitedDescription,
                   suggestion: context.l10n.logIssueRateLimitedSuggestion,
-                  color: context.isNothing ? colorScheme.onSurface : Colors.orange,
+                  color: context.isNothing
+                      ? colorScheme.onSurface
+                      : Colors.orange,
                 ),
                 const SizedBox(height: 8),
               ],
@@ -268,9 +276,8 @@ class _LogSummaryCard extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 context.l10n.logTotalErrors(analysis.errorCount),
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: colorScheme.onSurfaceVariant),
               ),
             ],
           ),
@@ -414,9 +421,8 @@ class _IssueBadge extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             description,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: colorScheme.onSurface),
+            style: Theme.of(context).textTheme.bodySmall
+                ?.copyWith(color: colorScheme.onSurface),
           ),
           if (domains != null && domains!.isNotEmpty) ...[
             const SizedBox(height: 4),
@@ -455,4 +461,3 @@ class _IssueBadge extends StatelessWidget {
     );
   }
 }
-

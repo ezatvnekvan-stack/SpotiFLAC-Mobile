@@ -388,7 +388,9 @@ extension _QueueTabNavigation on _QueueTabState {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: context.isNothing ? colorScheme.onSurface : const Color(0xFF5085A5),
+        color: context.isNothing
+            ? colorScheme.onSurface
+            : const Color(0xFF5085A5),
         borderRadius: BorderRadius.circular(8),
       ),
       child: AppIcon(
@@ -441,9 +443,8 @@ extension _QueueTabNavigation on _QueueTabState {
                     playlistName,
                   )
           : context.l10n.collectionAlreadyInPlaylist(playlistName);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
       _exitSelectionMode();
       return;
     }
@@ -491,9 +492,8 @@ extension _QueueTabNavigation on _QueueTabState {
                 isDraggingMultiple ? '$count tracks' : item.trackName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(fontWeight: FontWeight.w600),
               ),
             ),
           ],
@@ -502,4 +502,3 @@ extension _QueueTabNavigation on _QueueTabState {
     );
   }
 }
-

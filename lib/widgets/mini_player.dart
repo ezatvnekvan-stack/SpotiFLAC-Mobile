@@ -119,7 +119,9 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         child: Material(
           color: mornye
               ? Colors.transparent
-              : context.isNothing ? colorScheme.surfaceContainerLow : settingsGroupColor(context).withValues(alpha: 0.72),
+              : context.isNothing
+              ? colorScheme.surfaceContainerLow
+              : settingsGroupColor(context).withValues(alpha: 0.72),
           child: InkWell(
             onTap: () {
               Navigator.of(context, rootNavigator: true).push(
@@ -157,7 +159,13 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
                         tag: kNowPlayingArtworkHeroTag,
                         child: ClipRRect(
                           key: _artworkKey,
-                          borderRadius: BorderRadius.circular(context.isNothing ? 8 : mornye ? 6 : 12),
+                          borderRadius: BorderRadius.circular(
+                            context.isNothing
+                                ? 8
+                                : mornye
+                                ? 6
+                                : 12,
+                          ),
                           child: SizedBox(
                             width: context.tokens.coverMini,
                             height: context.tokens.coverMini,
@@ -358,4 +366,3 @@ class _MiniPlayerProgress extends ConsumerWidget {
     );
   }
 }
-

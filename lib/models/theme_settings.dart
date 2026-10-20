@@ -191,4 +191,3 @@ ThemeMode themeModeFromString(String? value) {
     orElse: () => ThemeMode.system,
   );
 }
-

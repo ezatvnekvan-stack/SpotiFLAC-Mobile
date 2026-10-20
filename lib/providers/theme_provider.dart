@@ -158,4 +158,3 @@ class ThemeNotifier extends Notifier<ThemeSettings> {
     await _saveToStorage();
   }
 }
-

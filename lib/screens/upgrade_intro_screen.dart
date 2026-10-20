@@ -87,9 +87,8 @@ class _UpgradeIntroScreenState extends State<UpgradeIntroScreen> {
                       children: [
                         if (_page > 0)
                           AppIconButton(
-                            tooltip: MaterialLocalizations.of(
-                              context,
-                            ).backButtonTooltip,
+                            tooltip: MaterialLocalizations.of(context)
+                                .backButtonTooltip,
                             onPressed: () => _goTo(_page - 1),
                             color: scheme.primary,
                             icon: Icon(
@@ -789,7 +788,11 @@ class _ThemePicker extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: Theme(
               data: style == AppThemeStyle.nothing
-                  ? NothingTheme.build(brightness, amoled: settings.useAmoled, useSystemFont: settings.useSystemFont)
+                  ? NothingTheme.build(
+                      brightness,
+                      amoled: settings.useAmoled,
+                      useSystemFont: settings.useSystemFont,
+                    )
                   : style == AppThemeStyle.mornye
                   ? MornyeTheme.build(
                       brightness,
@@ -974,4 +977,3 @@ class _ThemeOption extends StatelessWidget {
     );
   }
 }
-

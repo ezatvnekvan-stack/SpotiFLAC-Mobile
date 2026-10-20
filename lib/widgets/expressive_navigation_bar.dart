@@ -27,7 +27,11 @@ class ExpressiveNavigationBar extends StatelessWidget {
         onDestinationSelected: onDestinationSelected,
         animationDuration: Duration.zero,
         elevation: 0,
-        height: context.isNothing ? 80 : isTablet ? 72 : 64,
+        height: context.isNothing
+            ? 80
+            : isTablet
+            ? 72
+            : 64,
         backgroundColor: backgroundColor,
         destinations: destinations,
       );
@@ -130,4 +134,3 @@ class ExpressiveNavigationRail extends StatelessWidget {
     );
   }
 }
-

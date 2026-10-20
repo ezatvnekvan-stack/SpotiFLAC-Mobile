@@ -388,9 +388,8 @@ class _RewindMessage extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(color: foreground),
+              style: Theme.of(context).textTheme.titleMedium
+                  ?.copyWith(color: foreground),
             ),
           ),
         ),
@@ -413,4 +412,3 @@ class _CloseButton extends StatelessWidget {
     onPressed: () => Navigator.of(context).maybePop(),
   );
 }
-

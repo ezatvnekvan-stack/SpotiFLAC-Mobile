@@ -455,11 +455,12 @@ class _CoverPaletteBuilderState extends State<CoverPaletteBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = context.isNothing ? Theme.of(context).colorScheme : _scheme ?? Theme.of(context).colorScheme;
+    final scheme = context.isNothing
+        ? Theme.of(context).colorScheme
+        : _scheme ?? Theme.of(context).colorScheme;
     return HeaderPalette(
       scheme: scheme,
       child: widget.builder(context, scheme),
     );
   }
 }
-

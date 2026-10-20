@@ -459,7 +459,9 @@ class SettingsItem extends StatelessWidget {
                     if (showIcon) ...[
                       AppIcon.adaptive(
                         icon!,
-                        color: context.isNothing ? colorScheme.onSurface : iconColor ?? colorScheme.onSurfaceVariant,
+                        color: context.isNothing
+                            ? colorScheme.onSurface
+                            : iconColor ?? colorScheme.onSurfaceVariant,
                         size: 24,
                       ),
                       SizedBox(width: context.tokens.rowIconGap),
@@ -489,12 +491,12 @@ class SettingsItem extends StatelessWidget {
                               subtitle!,
                               style:
                                   (context.isMornye
-                                          ? Theme.of(
-                                              context,
-                                            ).textTheme.bodySmall
-                                          : Theme.of(
-                                              context,
-                                            ).textTheme.bodyMedium)
+                                          ? Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                          : Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium)
                                       ?.copyWith(
                                         color: colorScheme.onSurfaceVariant,
                                       ),
@@ -683,7 +685,9 @@ class SettingsSectionHeader extends StatelessWidget {
                 color: context.isMornye
                     ? Theme.of(context).colorScheme.onSurfaceVariant
                     : Theme.of(context).colorScheme.primary,
-                fontWeight: context.isNothing ? FontWeight.w400 : FontWeight.w600,
+                fontWeight: context.isNothing
+                    ? FontWeight.w400
+                    : FontWeight.w600,
                 fontFamily: context.isNothing ? NothingTheme.dotFont : null,
                 fontSize: context.isNothing ? 16 : null,
                 letterSpacing: context.isNothing ? 0.8 : null,
@@ -978,4 +982,3 @@ class SettingsInfoCard extends StatelessWidget {
     );
   }
 }
-

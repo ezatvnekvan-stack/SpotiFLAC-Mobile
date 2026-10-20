@@ -33,12 +33,27 @@ class AppChoiceChip extends StatelessWidget {
       final c = Theme.of(context).colorScheme;
       final foreground = selected ? c.surface : c.onSurface;
       return FilterChip(
-        label: DefaultTextStyle.merge(style: TextStyle(color: foreground),
-          child: Row(mainAxisSize: MainAxisSize.min, children: [label,
-            if (count != null) ...[const SizedBox(width: 6), Text('$count')]])),
-        avatar: icon == null ? null : IconTheme.merge(data: IconThemeData(color: foreground), child: icon!),
-        selected: selected, onSelected: onSelected, visualDensity: visualDensity,
-        selectedColor: c.onSurface, checkmarkColor: foreground,
+        label: DefaultTextStyle.merge(
+          style: TextStyle(color: foreground),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              label,
+              if (count != null) ...[const SizedBox(width: 6), Text('$count')],
+            ],
+          ),
+        ),
+        avatar: icon == null
+            ? null
+            : IconTheme.merge(
+                data: IconThemeData(color: foreground),
+                child: icon!,
+              ),
+        selected: selected,
+        onSelected: onSelected,
+        visualDensity: visualDensity,
+        selectedColor: c.onSurface,
+        checkmarkColor: foreground,
         labelStyle: TextStyle(color: foreground),
         side: BorderSide(color: selected ? c.onSurface : c.outlineVariant),
         shape: const StadiumBorder(),
@@ -120,4 +135,3 @@ class AppChoiceChip extends StatelessWidget {
     );
   }
 }
-

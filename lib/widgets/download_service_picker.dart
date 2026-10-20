@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/theme/nothing_theme.dart';
@@ -203,9 +204,8 @@ class _DownloadServicePickerState extends ConsumerState<DownloadServicePicker> {
               padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
               child: Text(
                 context.l10n.downloadFrom,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
 
@@ -245,9 +245,8 @@ class _DownloadServicePickerState extends ConsumerState<DownloadServicePicker> {
                 ),
                 child: Text(
                   context.l10n.downloadSelectQuality,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
               if (context.isMornye)
@@ -370,17 +369,15 @@ class _QualityOption extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge
+                        ?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   if (subtitle.isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall
+                          ?.copyWith(color: colorScheme.onSurfaceVariant),
                     ),
                   ],
                 ],
@@ -591,7 +588,11 @@ class _ServiceHealthDot extends ConsumerWidget {
         'unknown';
     final c = Theme.of(context).colorScheme;
     final color = context.isNothing
-        ? status == 'online' ? c.onSurface : status == 'offline' ? c.primary : c.outline
+        ? status == 'online'
+              ? c.onSurface
+              : status == 'offline'
+              ? c.primary
+              : c.outline
         : _serviceHealthColor(status);
     return Tooltip(
       message: _serviceHealthTooltip(context, status),
@@ -668,16 +669,14 @@ class _NoDownloadProviderHint extends StatelessWidget {
               children: [
                 Text(
                   primaryText,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   secondaryText,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: colorScheme.onSurfaceVariant),
                 ),
               ],
             ),
@@ -855,4 +854,3 @@ class _TrackInfoHeaderState extends State<_TrackInfoHeader> {
     }
   }
 }
-
