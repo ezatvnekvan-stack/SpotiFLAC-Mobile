@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 
 class BouncingIcon extends StatefulWidget {
   final Widget child;
@@ -35,6 +36,9 @@ class _BouncingIconState extends State<BouncingIcon>
 
   @override
   Widget build(BuildContext context) {
+    if (context.isNothing || MediaQuery.disableAnimationsOf(context)) {
+      return widget.child;
+    }
     return ScaleTransition(scale: _scaleAnimation, child: widget.child);
   }
 }
@@ -79,6 +83,9 @@ class _SlidingIconState extends State<SlidingIcon>
 
   @override
   Widget build(BuildContext context) {
+    if (context.isNothing || MediaQuery.disableAnimationsOf(context)) {
+      return widget.child;
+    }
     return FadeTransition(
       opacity: _fadeAnimation,
       child: SlideTransition(position: _offsetAnimation, child: widget.child),
@@ -121,6 +128,9 @@ class _SpinIconState extends State<SpinIcon>
 
   @override
   Widget build(BuildContext context) {
+    if (context.isNothing || MediaQuery.disableAnimationsOf(context)) {
+      return widget.child;
+    }
     return RotationTransition(turns: _rotationAnimation, child: widget.child);
   }
 }

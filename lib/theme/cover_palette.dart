@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -422,6 +423,11 @@ class _CoverPaletteBuilderState extends State<CoverPaletteBuilder> {
   }
 
   void _maybeResolve() {
+    if (context.isNothing) {
+      _resolveGeneration++;
+      _scheme = null;
+      return;
+    }
     final source = widget.imageSource;
     final brightness = Theme.of(context).brightness;
     if (source == null || source.isEmpty) {
@@ -449,7 +455,9 @@ class _CoverPaletteBuilderState extends State<CoverPaletteBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = _scheme ?? Theme.of(context).colorScheme;
+    final scheme = context.isNothing
+        ? Theme.of(context).colorScheme
+        : _scheme ?? Theme.of(context).colorScheme;
     return HeaderPalette(
       scheme: scheme,
       child: widget.builder(context, scheme),

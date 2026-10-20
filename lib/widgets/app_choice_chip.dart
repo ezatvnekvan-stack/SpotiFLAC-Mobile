@@ -1,3 +1,4 @@
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_3_expressive/material_3_expressive.dart';
@@ -28,6 +29,36 @@ class AppChoiceChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (context.isNothing) {
+      final c = Theme.of(context).colorScheme;
+      final foreground = selected ? c.surface : c.onSurface;
+      return FilterChip(
+        label: DefaultTextStyle.merge(
+          style: TextStyle(color: foreground),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              label,
+              if (count != null) ...[const SizedBox(width: 6), Text('$count')],
+            ],
+          ),
+        ),
+        avatar: icon == null
+            ? null
+            : IconTheme.merge(
+                data: IconThemeData(color: foreground),
+                child: icon!,
+              ),
+        selected: selected,
+        onSelected: onSelected,
+        visualDensity: visualDensity,
+        selectedColor: c.onSurface,
+        checkmarkColor: foreground,
+        labelStyle: TextStyle(color: foreground),
+        side: BorderSide(color: selected ? c.onSurface : c.outlineVariant),
+        shape: const StadiumBorder(),
+      );
+    }
     if (materialExpressiveEnabled(context) && label is Text) {
       final text = label as Text;
       return MaterialExpressiveScope(

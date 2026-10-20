@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' show ImageFilter;
+
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:spotiflac_android/widgets/app_alert_dialog.dart';
@@ -754,9 +756,9 @@ class _MainShellState extends ConsumerState<MainShell>
                       child: ExpressiveNavigationRail(
                         selectedIndex: selectedDestination,
                         onDestinationSelected: _onNavTap,
-                        backgroundColor: Theme.of(
-                          context,
-                        ).colorScheme.surfaceContainer,
+                        backgroundColor: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainer,
                         destinations: destinations,
                       ),
                     ),
@@ -848,9 +850,8 @@ class _MainShellState extends ConsumerState<MainShell>
                       decoration: BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outlineVariant.withValues(alpha: 0.5),
+                            color: Theme.of(context).colorScheme.outlineVariant
+                                .withValues(alpha: 0.5),
                           ),
                         ),
                       ),
@@ -858,9 +859,8 @@ class _MainShellState extends ConsumerState<MainShell>
                         selectedIndex: _currentIndex.clamp(0, maxIndex),
                         onDestinationSelected: _onNavTap,
                         isTablet: isTablet,
-                        backgroundColor: settingsGroupColor(
-                          context,
-                        ).withValues(alpha: 0.72),
+                        backgroundColor: settingsGroupColor(context)
+                            .withValues(alpha: 0.72),
                         destinations: destinations,
                       ),
                     ),
@@ -869,7 +869,8 @@ class _MainShellState extends ConsumerState<MainShell>
               // The backdrop blur re-filters everything scrolling underneath on
               // every frame; low-end devices get an opaque base instead unless
               // the user forces blur on in appearance settings.
-              if (!ref.watch(backdropBlurEnabledProvider)) {
+              if (context.isNothing ||
+                  !ref.watch(backdropBlurEnabledProvider)) {
                 return ColoredBox(
                   color: settingsGroupColor(context),
                   child: bottomBar,

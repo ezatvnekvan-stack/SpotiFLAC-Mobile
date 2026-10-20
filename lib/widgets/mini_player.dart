@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -118,6 +119,8 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
         child: Material(
           color: mornye
               ? Colors.transparent
+              : context.isNothing
+              ? colorScheme.surfaceContainerLow
               : settingsGroupColor(context).withValues(alpha: 0.72),
           child: InkWell(
             onTap: () {
@@ -156,7 +159,13 @@ class _MiniPlayerState extends ConsumerState<MiniPlayer> {
                         tag: kNowPlayingArtworkHeroTag,
                         child: ClipRRect(
                           key: _artworkKey,
-                          borderRadius: BorderRadius.circular(mornye ? 6 : 12),
+                          borderRadius: BorderRadius.circular(
+                            context.isNothing
+                                ? 8
+                                : mornye
+                                ? 6
+                                : 12,
+                          ),
                           child: SizedBox(
                             width: context.tokens.coverMini,
                             height: context.tokens.coverMini,

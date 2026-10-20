@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:material_3_expressive/material_3_expressive.dart';
 import 'package:spotiflac_android/theme/material_expressive.dart';
 
@@ -26,7 +27,11 @@ class ExpressiveNavigationBar extends StatelessWidget {
         onDestinationSelected: onDestinationSelected,
         animationDuration: Duration.zero,
         elevation: 0,
-        height: isTablet ? 72 : 64,
+        height: context.isNothing
+            ? 80
+            : isTablet
+            ? 72
+            : 64,
         backgroundColor: backgroundColor,
         destinations: destinations,
       );

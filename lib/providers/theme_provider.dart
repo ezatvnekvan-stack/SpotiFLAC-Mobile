@@ -12,7 +12,7 @@ ThemeSettings loadBootstrapThemeSettings(SharedPreferences prefs) {
     themeMode: themeModeFromString(prefs.getString(kThemeModeKey)),
     useDynamicColor: prefs.getBool(kUseDynamicColorKey) ?? true,
     seedColorValue: prefs.getInt(kSeedColorKey) ?? kDefaultSeedColor,
-    useAmoled: prefs.getBool(kUseAmoledKey) ?? false,
+    useAmoled: prefs.getBool(kUseAmoledKey) ?? true,
     style: themeStyleFromString(prefs.getString(kThemeStyleKey)),
     mornyeAccent: mornyeAccentFromString(prefs.getString(kMornyeAccentKey)),
     useSystemFont: prefs.getBool(kUseSystemFontKey) ?? false,

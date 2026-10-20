@@ -44,11 +44,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                         spacing: 8,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Text(
-                            style == AppThemeStyle.mornye
-                                ? 'Mornye'
-                                : 'Material',
-                          ),
+                          Text(style.displayName),
                           if (style == AppThemeStyle.mornye)
                             Container(
                               padding: const EdgeInsets.symmetric(
@@ -56,9 +52,8 @@ class AppearanceSettingsPage extends ConsumerWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.primary.withValues(alpha: 0.12),
+                                color: Theme.of(context).colorScheme.primary
+                                    .withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
@@ -131,7 +126,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                   ],
                 ),
               ),
-            ] else ...[
+            ] else if (themeSettings.style == AppThemeStyle.material) ...[
               SliverToBoxAdapter(
                 child: SettingsSectionHeader(title: context.l10n.sectionColor),
               ),
@@ -177,7 +172,7 @@ class AppearanceSettingsPage extends ConsumerWidget {
                     onChanged: (mode) =>
                         ref.read(themeProvider.notifier).setThemeMode(mode),
                   ),
-                  if (themeSettings.style == AppThemeStyle.material &&
+                  if (themeSettings.style != AppThemeStyle.mornye &&
                       Theme.of(context).brightness == Brightness.dark)
                     SettingsSwitchItem(
                       icon: Icons.brightness_2,

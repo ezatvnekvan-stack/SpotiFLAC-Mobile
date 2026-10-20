@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spotiflac_android/controllers/player_metadata_controller.dart';
@@ -52,9 +53,8 @@ class PlayerPlaybackControls extends ConsumerWidget {
     final playPauseSize = compact
         ? (isPlaying ? 44.0 : 40.0)
         : (isPlaying ? 60.0 : 54.0);
-    final timeStyle = Theme.of(
-      context,
-    ).textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant);
+    final timeStyle = Theme.of(context).textTheme.bodySmall
+        ?.copyWith(color: colorScheme.onSurfaceVariant);
     return Column(
       children: [
         ValueListenableBuilder<Duration?>(
@@ -72,7 +72,7 @@ class PlayerPlaybackControls extends ConsumerWidget {
                     SliderTheme(
                       data: SliderThemeData(
                         trackHeight: 4,
-                        activeTrackColor: mornye
+                        activeTrackColor: mornye || context.isNothing
                             ? colorScheme.onSurface
                             : colorScheme.primary,
                         inactiveTrackColor: colorScheme.onSurface.withValues(
@@ -230,9 +230,7 @@ class PlayerPlaybackControls extends ConsumerWidget {
                         ? context.l10n.actionPause
                         : context.l10n.tooltipPlay,
                     icon: isLoading
-                        ? AppLoadingIndicator(
-                            color: colorScheme.onSurfaceVariant,
-                          )
+                        ? AppLoadingIndicator(color: colorScheme.onPrimary)
                         : Icon(isPlaying ? Icons.pause : Icons.play_arrow),
                     onPressed: isLoading
                         ? null

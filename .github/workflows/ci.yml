@@ -181,6 +181,7 @@ jobs:
     if: needs.changes.outputs.rust == 'true' || needs.changes.outputs.ios == 'true'
     env:
       SPOTIFLAC_DISCORD_SDK: "0"
+      HAS_DISCORD_SDK: ${{ secrets.DISCORD_MOBILE_SDK_PASSPHRASE != '' }}
 
     steps:
       - name: Checkout repository
@@ -212,7 +213,7 @@ jobs:
           cache: true
 
       - name: Prepare pinned Discord SDK
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        if: env.HAS_DISCORD_SDK == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: ./.github/actions/discord-sdk
         with:
           passphrase: ${{ secrets.DISCORD_MOBILE_SDK_PASSPHRASE }}
@@ -241,6 +242,7 @@ jobs:
     if: needs.changes.outputs.android == 'true'
     env:
       SPOTIFLAC_DISCORD_SDK: "0"
+      HAS_DISCORD_SDK: ${{ secrets.DISCORD_MOBILE_SDK_PASSPHRASE != '' }}
 
     steps:
       - name: Checkout repository
@@ -286,7 +288,7 @@ jobs:
 
       # Fork PRs cannot access repository secrets and exercise the Lite build.
       - name: Prepare pinned Discord SDK
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        if: env.HAS_DISCORD_SDK == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: ./.github/actions/discord-sdk
         with:
           passphrase: ${{ secrets.DISCORD_MOBILE_SDK_PASSPHRASE }}
@@ -363,3 +365,4 @@ jobs:
           path: |
             build/symbols/android/
             build/app/outputs/mapping/release/mapping.txt
+

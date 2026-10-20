@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui' show ImageFilter;
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart' show CustomSemanticsAction;
 import 'package:flutter/services.dart';
@@ -387,9 +388,8 @@ class _RewindMessage extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(color: foreground),
+              style: Theme.of(context).textTheme.titleMedium
+                  ?.copyWith(color: foreground),
             ),
           ),
         ),

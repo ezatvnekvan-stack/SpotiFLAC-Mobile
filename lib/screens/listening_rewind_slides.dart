@@ -18,6 +18,9 @@ class _RewindPalette {
       );
     }
     final c = Theme.of(context).colorScheme;
+    if (context.isNothing) {
+      return _RewindPalette(c.surface, c.onSurface, c.primary);
+    }
     final pairs = [
       (c.primaryContainer, c.onPrimaryContainer, c.primary),
       (c.tertiaryContainer, c.onTertiaryContainer, c.tertiary),
@@ -90,9 +93,9 @@ class _RewindSlide extends StatelessWidget {
     final artwork = rewind.summary.artistArtwork;
     final yearDetails = rewind.year;
     final yearLabel = '${rewind.range.start.year}';
-    String monthName(int month) => DateFormat.MMMM(
-      locale,
-    ).format(DateTime(rewind.range.start.year, month));
+    String monthName(int month) =>
+        DateFormat.MMMM(locale)
+            .format(DateTime(rewind.range.start.year, month));
 
     switch (slide) {
       case _Slide.intro:
@@ -169,9 +172,8 @@ class _RewindSlide extends StatelessWidget {
               months: [
                 for (final month in months)
                   (
-                    DateFormat.MMM(
-                      locale,
-                    ).format(DateTime(rewind.range.start.year, month)),
+                    DateFormat.MMM(locale)
+                        .format(DateTime(rewind.range.start.year, month)),
                     yearDetails.monthlyTopArtists[month]!,
                   ),
               ],
@@ -337,9 +339,8 @@ class _RewindSlide extends StatelessWidget {
               _Fact(
                 label: l10n.listeningRewindFavoriteDay,
                 // 1 January 2024 was a Monday.
-                value: DateFormat.EEEE(
-                  locale,
-                ).format(DateTime(2024, 1, weekday)),
+                value: DateFormat.EEEE(locale)
+                    .format(DateTime(2024, 1, weekday)),
               ),
             _Fact(
               label: l10n.listeningRewindStreak,

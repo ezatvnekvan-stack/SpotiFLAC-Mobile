@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:spotiflac_android/theme/nothing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:material_3_expressive/material_3_expressive.dart';
@@ -18,6 +19,7 @@ import 'package:spotiflac_android/utils/adaptive_layout.dart';
 /// black) dark themes as well as normal light/dark themes.
 Color settingsGroupColor(BuildContext context) {
   final colorScheme = Theme.of(context).colorScheme;
+  if (context.isNothing) return colorScheme.surfaceContainerLow;
   if (context.isMornye) return colorScheme.surfaceContainer;
   final isDark = Theme.of(context).brightness == Brightness.dark;
   return isDark
@@ -297,7 +299,7 @@ class SettingsGroup extends StatelessWidget {
                   child is ListTile,
             ));
     // Connected surfaces are static layout, so reduced motion keeps the gaps.
-    if (!context.isMornye && standardRows) {
+    if (!context.isMornye && !context.isNothing && standardRows) {
       // Expressive connected list: every row is its own surface separated by
       // a 2dp gap. The group's ends keep the card radius, inner corners stay
       // tight, and the gaps replace row dividers.
@@ -457,7 +459,9 @@ class SettingsItem extends StatelessWidget {
                     if (showIcon) ...[
                       AppIcon.adaptive(
                         icon!,
-                        color: iconColor ?? colorScheme.onSurfaceVariant,
+                        color: context.isNothing
+                            ? colorScheme.onSurface
+                            : iconColor ?? colorScheme.onSurfaceVariant,
                         size: 24,
                       ),
                       SizedBox(width: context.tokens.rowIconGap),
@@ -487,12 +491,12 @@ class SettingsItem extends StatelessWidget {
                               subtitle!,
                               style:
                                   (context.isMornye
-                                          ? Theme.of(
-                                              context,
-                                            ).textTheme.bodySmall
-                                          : Theme.of(
-                                              context,
-                                            ).textTheme.bodyMedium)
+                                          ? Theme.of(context)
+                                                .textTheme
+                                                .bodySmall
+                                          : Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium)
                                       ?.copyWith(
                                         color: colorScheme.onSurfaceVariant,
                                       ),
@@ -681,7 +685,12 @@ class SettingsSectionHeader extends StatelessWidget {
                 color: context.isMornye
                     ? Theme.of(context).colorScheme.onSurfaceVariant
                     : Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w600,
+                fontWeight: context.isNothing
+                    ? FontWeight.w400
+                    : FontWeight.w600,
+                fontFamily: context.isNothing ? NothingTheme.dotFont : null,
+                fontSize: context.isNothing ? 16 : null,
+                letterSpacing: context.isNothing ? 0.8 : null,
               ),
     );
     // Aligned with the row content of the groups below at any width.
